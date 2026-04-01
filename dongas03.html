@@ -52,6 +52,12 @@
     border-bottom: 1px solid var(--border);
   }
 
+  .hero-inner {
+    max-width: 820px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
   .hero-tag {
     font-family: var(--sans);
     font-size: 11px;
@@ -475,32 +481,39 @@
   ::-webkit-scrollbar { width: 6px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
   ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  @media(max-width: 600px) {
+    .hero { padding: 48px 20px 40px; }
+    .container { padding: 48px 20px; }
+  }
 </style>
 </head>
 <body>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="verdict-badge">실패 사례 분석</div>
-  <div class="hero-tag">지역 상권 분석 · 외식업</div>
-  <h1 class="fade-in"><em>시작부터 실패한</em><br>상권분석 — 돈가스전문점</h1>
-  <p class="hero-sub fade-in delay-1">노동자 밀집 지역에 고급 돈가스집이 들어왔다. 개업 한 달 만에 폐업했다. 무엇이 잘못됐을까.</p>
-  <div class="hero-meta fade-in delay-2">
-    <div class="meta-item">
-      <span class="meta-label">업종</span>
-      <span class="meta-value">돈가스 전문점</span>
-    </div>
-    <div class="meta-item">
-      <span class="meta-label">폐업까지</span>
-      <span class="meta-value">약 1개월</span>
-    </div>
-    <div class="meta-item">
-      <span class="meta-label">실패 원인</span>
-      <span class="meta-value">상권 분석 전면 오류</span>
-    </div>
-    <div class="meta-item">
-      <span class="meta-label">분류</span>
-      <span class="meta-value">메뉴 · 입지 · 가격 3중 실패</span>
+  <div class="hero-inner">
+    <div class="verdict-badge">실패 사례 분석</div>
+    <div class="hero-tag">지역 상권 분석 · 외식업</div>
+    <h1 class="fade-in"><em>시작부터 실패한</em><br>상권분석 — 돈가스전문점</h1>
+    <p class="hero-sub fade-in delay-1">노동자 밀집 지역에 고급 돈가스집이 들어왔다. 개업 한 달 만에 폐업했다. 무엇이 잘못됐을까.</p>
+    <div class="hero-meta fade-in delay-2">
+      <div class="meta-item">
+        <span class="meta-label">업종</span>
+        <span class="meta-value">돈가스 전문점</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">폐업까지</span>
+        <span class="meta-value">약 1개월</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">실패 원인</span>
+        <span class="meta-value">상권 분석 전면 오류</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">분류</span>
+        <span class="meta-value">메뉴 · 입지 · 가격 3중 실패</span>
+      </div>
     </div>
   </div>
 </section>
