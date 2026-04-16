@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>소상공인 상권분석 — 사례 아카이브</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1410;
+    --paper: #f5f0e8;
+    --cream: #ede7d9;
+    --accent: #c0392b;
+    --muted: #7a6e62;
+    --rule: #c8bfb0;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+  }
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 0;
+  }
+  .wrap { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding: 0 2rem; }
+
+  /* Back nav */
+  .back-nav { padding: 1.8rem 0 0; }
+  .back-link {
+    font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--muted); text-decoration: none;
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    transition: color 0.18s;
+  }
+  .back-link:hover { color: var(--accent); }
+
+  header { padding: 2.2rem 0 2.2rem; border-bottom: 2px solid var(--ink); }
+  .header-meta { font-size: 0.68rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+  h1 { font-family: 'Nanum Myeongjo', serif; font-weight: 800; font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.2; letter-spacing: -0.02em; }
+  .header-desc { margin-top: 0.9rem; font-size: 0.9rem; color: var(--muted); line-height: 1.75; max-width: 520px; word-break: keep-all; }
+
+  /* Case list */
+  .section { margin-top: 2.8rem; }
+  .case-list { list-style: none; }
+  .case-item {
+    border-bottom: 1px solid var(--rule);
+    opacity: 0; transform: translateY(12px);
+    animation: fadeUp 0.5s ease forwards;
+  }
+  .case-item:nth-child(1) { animation-delay: 0.08s; }
+  .case-item:nth-child(2) { animation-delay: 0.17s; }
+  .case-item:nth-child(3) { animation-delay: 0.26s; }
+  .case-item:nth-child(4) { animation-delay: 0.35s; }
+  .case-item:nth-child(5) { animation-delay: 0.44s; }
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+  .case-link {
+    display: grid;
+    grid-template-columns: 2.6rem 1fr auto;
+    align-items: center;
+    gap: 1.2rem;
+    padding: 1.45rem 0;
+    text-decoration: none; color: inherit;
+    transition: background 0.18s;
+  }
+  .case-link:hover { background: var(--cream); margin: 0 -2rem; padding-left: 2rem; padding-right: 2rem; }
+  .case-num { font-family: 'Nanum Myeongjo', serif; font-size: 0.78rem; color: var(--accent); font-weight: 700; letter-spacing: 0.06em; }
+  .case-body { display: flex; flex-direction: column; gap: 0.28rem; }
+  .case-tag { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+  .case-title { font-family: 'Nanum Myeongjo', serif; font-size: 1.1rem; font-weight: 700; line-height: 1.45; word-break: keep-all; }
+  .case-sub { font-size: 0.8rem; color: var(--muted); }
+  .case-arrow { font-size: 1.1rem; color: var(--rule); transition: color 0.18s, transform 0.18s; flex-shrink: 0; }
+  .case-link:hover .case-arrow { color: var(--accent); transform: translateX(4px); }
+
+  /* Footer with cross-link */
+  footer {
+    margin-top: 4.5rem;
+    padding: 2rem 0 3rem;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+  .footer-links { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .footer-link {
+    font-size: 0.75rem; letter-spacing: 0.1em;
+    text-decoration: none; color: var(--muted);
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    border: 1px solid var(--rule);
+    padding: 0.5rem 1rem;
+    transition: border-color 0.18s, color 0.18s;
+  }
+  .footer-link:hover { border-color: var(--accent); color: var(--accent); }
+  .footer-link.blue:hover { border-color: #2c5f8a; color: #2c5f8a; }
+  .footer-meta { font-size: 0.72rem; color: var(--rule); }
+
+  @media (max-width: 520px) {
+    .case-link { grid-template-columns: 2rem 1fr auto; gap: 0.8rem; }
+    .case-title { font-size: 0.98rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <nav class="back-nav">
+    <a class="back-link" href="index.html">← 전체 아카이브</a>
+  </nav>
+
+  <header>
+    <div class="header-meta">Category 01 &nbsp;/&nbsp; 소상공인 상권분석</div>
+    <h1>골목 장사의<br>생존 조건</h1>
+    <p class="header-desc">같은 상권, 같은 업종인데 왜 결과는 달라지는가. 현장에서 발견한 패턴들.</p>
+  </header>
+
+  <section class="section">
+    <ul class="case-list">
+
+      <li class="case-item">
+        <a class="case-link" href="https://wisespring.github.io/smalbiz/cafe01.html" target="_blank" rel="noopener">
+          <span class="case-num">01</span>
+          <div class="case-body">
+            <span class="case-tag">카페</span>
+            <span class="case-title">바로 옆 가게인데 왜 한 곳만 잘 될까?</span>
+            <span class="case-sub">카페편 — 같은 입지, 다른 결과의 비밀</span>
+          </div>
+          <span class="case-arrow">→</span>
+        </a>
+      </li>
+
+      <li class="case-item">
+        <a class="case-link" href="https://wisespring.github.io/smalbiz/meat02.html" target="_blank" rel="noopener">
+          <span class="case-num">02</span>
+          <div class="case-body">
+            <span class="case-tag">고기식당</span>
+            <span class="case-title">노동자 밀집 상권에서 한 달 만에 망한 고깃집의 진짜 이유</span>
+            <span class="case-sub">고기식당편 — 수요가 있어도 망하는 구조</span>
+          </div>
+          <span class="case-arrow">→</span>
+        </a>
+      </li>
+
+      <li class="case-item">
+        <a class="case-link" href="https://wisespring.github.io/smalbiz/dongas03.html" target="_blank" rel="noopener">
+          <span class="case-num">03</span>
+          <div class="case-body">
+            <span class="case-tag">돈가스전문점</span>
+            <span class="case-title">시작부터 실패한 상권분석</span>
+            <span class="case-sub">돈가스전문점편 — 오픈 전에 이미 결정된 결말</span>
+          </div>
+          <span class="case-arrow">→</span>
+        </a>
+      </li>
+
+      <li class="case-item">
+        <a class="case-link" href="https://wisespring.github.io/smalbiz/milleore04.html" target="_blank" rel="noopener">
+          <span class="case-num">04</span>
+          <div class="case-body">
+            <span class="case-tag">의류 / 명동 밀레오레</span>
+            <span class="case-title">"죽음의 자리"에서 2층 상인들이 구경 왔다</span>
+            <span class="case-sub">명동편 — 상권과 상품의 불일치가 만든 실패, 분석이 만든 역전</span>
+          </div>
+          <span class="case-arrow">→</span>
+        </a>
+      </li>
+
+      <li class="case-item">
+        <a class="case-link" href="https://wisespring.github.io/smalbiz/Iksan05.html" target="_blank" rel="noopener">
+          <span class="case-num">05</span>
+          <div class="case-body">
+            <span class="case-tag">캐주얼 의류 / 전북 익산</span>
+            <span class="case-title">신규 상가 구석 자리에서 스카웃 제의까지</span>
+            <span class="case-sub">익산편 — 10대가 10명씩 끌고 온 친화력 마케팅의 실체</span>
+          </div>
+          <span class="case-arrow">→</span>
+        </a>
+      </li>
+
+    </ul>
+  </section>
+
+  <footer>
+    <div class="footer-links">
+      <a class="footer-link" href="index.html">← 전체 아카이브</a>
+      <a class="footer-link blue" href="/human/index.html">인간분석 보러가기 →</a>
+    </div>
+    <span class="footer-meta">사례는 계속 추가됩니다 &nbsp;·&nbsp; wisespring.github.io</span>
+  </footer>
+
+</div>
+</body>
+</html>
